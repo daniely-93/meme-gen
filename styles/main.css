@@ -63,16 +63,16 @@ a {
 
 /* Canvas */
 
-#canvas{
+#canvas {
     flex: 1;
 }
 
-.meme-container{
+.meme-container {
     flex: 1;
     padding: 0 20px;
 }
 
-.meme-opts{
+.meme-opts {
     justify-content: space-between;
 }
 
@@ -96,7 +96,7 @@ a {
     box-sizing: border-box;
 }
 
-.flex{
+.flex {
     display: flex;
 }
 
@@ -114,8 +114,16 @@ a {
 }
 
 .btn-back {
-    position: absolute;
+    width: 60px;
     left: 10px;
+    height: 35px;
 }
 
-/* Media */
+@media screen and (max-width: 1000px) {
+    .canvas-container {
+        flex-direction: column;
+    }
+    .meme-container {
+        padding: 0;
+    }
+}

@@ -1,23 +1,89 @@
-.header{
+.header {
     background-color: #fff;
     flex: 1;
     display: flex;
     justify-content: space-between;
 }
 
-.nav{
+.nav {
     list-style: none;
     display: flex;
 }
 
-.nav-item{
-    flex:1;
+.nav-item {
+    flex: 1;
     padding: 15px;
     text-align: center;
     width: 200px;
 }
 
-.nav-item:hover{
+.nav-item a {
+    color: gray;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-item:hover {
     background-color: rgba(0, 98, 255, 0.329);
     cursor: pointer;
+}
+
+.open-menu .screen {
+    visibility: visible;
+    opacity: 1;
+}
+
+.screen {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.menu-btn {
+    border: none;
+    background: none;
+    color: black;
+    cursor: pointer;
+    font-size: 2rem;
+    margin-right: 10px;
+    display: none;
+    height: 100%;
+}
+
+@media screen and (max-width: 1100px) {
+    .nav {
+        flex-direction: column;
+        height: auto;
+        margin: 0 auto;
+        width: 35%;
+        position: fixed;
+        padding: 0;
+        right: 0;
+        top: 0;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.75);
+        transform: translate(100%, 0);
+        transition: transform .6s;
+        justify-content: center;
+    }
+    .open-menu .nav {
+        transform: translate(0, 0);
+    }
+    .menu-btn {
+        display: block;
+    }
+    .nav-item {
+        padding: 25px;
+        width: 100%;
+    }
+    .nav-item a {
+        color: white;
+    }
 }

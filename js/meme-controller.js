@@ -21,8 +21,8 @@ function resizeCanvas(w, h) {
 }
 
 function renderImgs() {
-    let elSearch = document.querySelector('.search');
-    let imgs = !elSearch.value ? getImgs() : filterImgs(elSearch.value);
+    let searchVal = document.querySelector('.search').value.toLowerCase();
+    let imgs = !searchVal ? getImgs() : filterImgs(searchVal);
     let strHTML = imgs.map(img => {
         return `<img src="img/${img.id}.jpg" onclick="onSelectHandle(${img.id})" width="150px"/>`
     }).join('');

@@ -1,6 +1,7 @@
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/nav.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,7 +13,7 @@
         <div class="screen" onclick="toggleMenu()"></div>
         <div class="header">
             <div class="logo">
-                <img src="img/logo.png" />
+                <img class="logo-img" src="img/logo.png" />
             </div>
             <div class="nav-container">
                 <button class="menu-btn" onclick="toggleMenu()">☰</button>
@@ -30,8 +31,6 @@
                     <div class="gallery-search-cats flex">
                         <button type="button">Funny</button>
                         <button type="button">Politics</button>
-                        <button type="button">Animals</button>
-                        <button type="button">Kids</button>
                         <button type="button">More...</button>
                     </div>
                 </div>
@@ -39,23 +38,63 @@
                     <!-- Pics to load from JS -->
                 </div>
             </div>
-            <div class="canvas-container flex hide">
-                <button class="btn btn-back" onclick="goBack()" type="button">Back</button>
-                <canvas id="canvas"></canvas>
-                <div class="meme-container">
-                    <input class="input" type="input" placeholder="Enter your text..." />
-                    <div class="meme-opts flex">
-                        <button type="button" class="btn"><img src="icons/trash.png" width="30px"/></button>
-                        <button type="button" class="btn"><img src="icons/increase font - icon.png" width="30px"/></button>
-                        <button type="button" class="btn"><img src="icons/decrease font - icon.png" width="30px"/></button>
-                        <button type="button" class="btn"><img src="icons/align-to-left.png" width="30px"/></button>
-                        <button type="button" class="btn"><img src="icons/center-text-alignment.png" width="30px"/></button>
-                        <button type="button" class="btn"><img src="icons/align-to-right.png" width="30px"/></button>
+            <div class="meme-container flex hide">
+                <div class="top">
+
+                    <button class="btn btn-back" onclick="goBack()" type="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</button>
+                    <a class="btn" id="download" download="Image.jpg" href="" onclick="onDownload(this);"><i class="fa fa-download" aria-hidden="true"></i> Download</a>
+                </div>
+                <div class="meme-content-container flex">
+                    <div class="canvas-container">
+                        <canvas id="canvas"></canvas>
+                    </div>
+                    <div class="editor-container">
+                        <input oninput="e => onTextChange(e)" class="input" id="text"
+                            placeholder="Enter your text..."></input>
+                        <div class="meme-opts flex">
+                            <div class="general-opt">
+                                <button type="button" class="btn btn-editor btn-danger" onclick="onDeleteText()"><img
+                                        src="icons/trash.png" width="30px" /></button>
+                                <button type="button" class="btn btn-editor" onclick="onAddText()"><img
+                                        src="icons/add.png" width="30px" /></button>
+                                <button type="button" class="btn btn-editor"><img
+                                        src="icons/up-and-down-opposite-double-arrows-side-by-side.png" width="30px"
+                                        onclick="onNextText()" /></button>
+                                <button type="button" class="btn btn-editor"><img src="icons/up-arrow.png" width="30px"
+                                        onclick="onMoveUp()" /></button>
+                                <button type="button" class="btn btn-editor"><img src="icons/down-arrow.png"
+                                        width="30px" onclick="onMoveDown()" /></button>
+                                <button type="button" class="btn btn-editor" onclick="onFontIncrease()"><img
+                                        src="icons/increase font - icon.png" width="30px" /></button>
+                                <button type="button" class="btn btn-editor" onclick="onFontDecrease()"><img
+                                        src="icons/decrease font - icon.png" width="30px" /></button>
+                                <button type="button" class="btn btn-editor" onclick="onSetAlign('right')"><img
+                                        src="icons/align-to-left.png" width="30px" /></button>
+                                <button type="button" class="btn btn-editor" onclick="onSetAlign('center')"><img
+                                        src="icons/center-text-alignment.png" width="30px" /></button>
+                                <button type="button" class="btn btn-editor" onclick="onSetAlign('left')"><img
+                                        src="icons/align-to-right.png" width="30px" /></button>
+                                <button type="button" class="btn btn-editor"
+                                    onclick="document.querySelector('#text-color').click()"><img
+                                        src="icons/paint-board-and-brush.png" width="30px" /></button>
+                                <input type="color" class="hide" id="text-color" onchange="onChangeColor(this.value)"
+                                    value="#ffffff" />
+                                <button type="button" class="btn btn-editor"
+                                    onclick="document.querySelector('#stroke-color').click()"><img
+                                        src="icons/paint-board-and-brush.png" width="30px" /></button>
+                                <input type="color" class="hide" id="stroke-color"
+                                    onchange="onChangeStrokeColor(this.value)" value="#000000" />
+                                <div class="stroke">
+                                    <p>Stroke:</p><input type="range" id="stroke-text-size-input" min="0.25" max="10"
+                                        value="3" step="0.25" onchange="onStrokeChange(this.value)">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer">Footer</div>
+        <!-- <div class="footer">Footer</div> -->
     </div>
     <script src="js/meme-service.js"></script>
     <script src="js/meme-controller.js"></script>

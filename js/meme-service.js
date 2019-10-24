@@ -29,23 +29,96 @@ let gImgs = [
 ];
 
 let gMeme = {
-    selectedImgId: 5,
+    selectedImgId: -1,
     selectedTxtIdx: 0,
 
     txts: [
-        {
-            line: 'I never eat Falafel',
-            size: 20,
-            align: 'left',
-            color: 'red'
-        }
+        // {
+        //     line: 'I never eat Falafel',
+        //     size: 20,
+        //     align: 'center',
+        //     color: 'red'
+        // }
     ]
 }
 
-function getImgs(){
+function getImgs() {
     return gImgs;
 }
 
-function getImg(id) {
-    return gImgs.find(img => img.id === id);
+function setSelectedText(id) {
+    gMeme.selectedTxtIdx = id;
+}
+
+function setSelectedId(id) {
+    gMeme.selectedImgId = id;
+}
+
+function setAlign(side) {
+    gMeme.txts[gMeme.selectedTxtIdx].align = side;
+}
+
+function addText(line, size, stroke, strokeColor, align, color) {
+    gMeme.txts.unshift({
+        line,
+        size,
+        stroke,
+        strokeColor,
+        align,
+        color,
+        position: !gMeme.txts.length ? size : 200
+    })
+    gMeme.selectedTxtIdx = 0;
+}
+
+function deleteText(){
+    gMeme.txts.splice(gMeme.selectedTxtIdx, 1);
+}
+
+function setNextText() {
+    gMeme.selectedTxtIdx < gMeme.txts.length - 1 ? gMeme.selectedTxtIdx++ : gMeme.selectedTxtIdx = 0;
+}
+
+function getCurrText() {
+    return gMeme.txts[gMeme.selectedTxtIdx];
+}
+
+function updateText(line) {
+    gMeme.txts[gMeme.selectedTxtIdx].line = line;
+}
+
+function getCurrImg() {
+    return gImgs[gMeme.selectedImgId - 1];
+}
+
+function getTexts() {
+    return gMeme.txts;
+}
+
+function increaseFont() {
+    gMeme.txts[gMeme.selectedTxtIdx].size += 2;
+}
+
+function decreaseFont() {
+    gMeme.txts[gMeme.selectedTxtIdx].size -= 2;
+}
+
+function changeColor(color) {
+    gMeme.txts[gMeme.selectedTxtIdx].color = color;
+}
+
+function changeStrokeColor(color){
+    gMeme.txts[gMeme.selectedTxtIdx].strokeColor = color;
+}
+
+function moveUp(){
+    gMeme.txts[gMeme.selectedTxtIdx].position -= 20
+}
+
+function moveDown(){
+    gMeme.txts[gMeme.selectedTxtIdx].position += 20
+}
+
+function updateStroke(val){
+    gMeme.txts[gMeme.selectedTxtIdx].stroke = val;
 }

@@ -1,8 +1,14 @@
 let gCanvas;
 let gCtx;
+let gAspectRatio;
 
 window.onload = () => {
     renderImgs();
+}
+
+window.onresize = () => {
+    // $('#canvas').height($('#canvas').width() / 2.031);
+    // gCanvas.height = gCanvas.width / gAspectRatio;
 }
 
 function clearCanvas() {
@@ -15,7 +21,8 @@ function resizeCanvas(w, h) {
 }
 
 function renderImgs() {
-    let imgs = getImgs();
+    let elSearch = document.querySelector('.search');
+    let imgs = !elSearch.value ? getImgs() : filterImgs(elSearch.value);
     let strHTML = imgs.map(img => {
         return `<img src="img/${img.id}.jpg" onclick="onSelectHandle(${img.id})" width="150px"/>`
     }).join('');
@@ -23,12 +30,13 @@ function renderImgs() {
 }
 
 function generateMeme() {
-    let img = getCurrImg();
+    let currImg = getCurrImg();
     let elImg = new Image;
-    elImg.src = img.url;
+    elImg.src = currImg.url;
     resizeCanvas(elImg.width, elImg.height);
     clearCanvas();
     gCtx.drawImage(elImg, 0, 0);
+    gAspectRatio = elImg.width / elImg.height;
     // drawText(gMeme.txts[0].line, 70, 'top')
 }
 
@@ -95,7 +103,7 @@ function onChangeColor(val) {
     renderText();
 }
 
-function onChangeStrokeColor(val){
+function onChangeStrokeColor(val) {
     changeStrokeColor(val);
     renderText();
 }
@@ -151,7 +159,7 @@ function toggleMenu() {
     document.body.classList.toggle('open-menu');
 }
 
-function onDownload(elLink){
+function onDownload(elLink) {
     var image = gCanvas.toDataURL("image/png")
         .replace("image/png", "image/octet-stream");
     elLink.setAttribute("href", image);

@@ -27,7 +27,7 @@
         <div class="content">
             <div class="gallery-container flex">
                 <div class="gallery-search flex">
-                    <input class="input search" type="input" placeholder="Search..." />
+                    <input class="input search" type="input" oninput="renderImgs()" placeholder="Search..." />
                     <div class="gallery-search-cats flex">
                         <button type="button">Funny</button>
                         <button type="button">Politics</button>
@@ -39,10 +39,15 @@
                 </div>
             </div>
             <div class="meme-container flex hide">
-                <div class="top">
-
-                    <button class="btn btn-back" onclick="goBack()" type="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</button>
-                    <a class="btn" id="download" download="Image.jpg" href="" onclick="onDownload(this);"><i class="fa fa-download" aria-hidden="true"></i> Download</a>
+                <div class="top-menu">
+                    <button class="btn" onclick="goBack()" type="button"><i class="fa fa-arrow-circle-left"
+                            aria-hidden="true"></i> Back</button>
+                    <div class="file-transfer">
+                        <a class="btn" id="download" download="Image.jpg" href="" onclick="onDownload(this);"><i
+                                class="fa fa-upload" aria-hidden="true"></i> Upload</a>
+                        <a class="btn" id="download" download="Image.jpg" href="" onclick="onDownload(this);"><i
+                                class="fa fa-download" aria-hidden="true"></i> Download</a>
+                    </div>
                 </div>
                 <div class="meme-content-container flex">
                     <div class="canvas-container">
@@ -50,7 +55,7 @@
                     </div>
                     <div class="editor-container">
                         <input oninput="e => onTextChange(e)" class="input" id="text"
-                            placeholder="Enter your text..."></input>
+                            placeholder="Add text first and enter your text..."></input>
                         <div class="meme-opts flex">
                             <div class="general-opt">
                                 <button type="button" class="btn btn-editor btn-danger" onclick="onDeleteText()"><img
@@ -64,16 +69,17 @@
                                         onclick="onMoveUp()" /></button>
                                 <button type="button" class="btn btn-editor"><img src="icons/down-arrow.png"
                                         width="30px" onclick="onMoveDown()" /></button>
-                                <button type="button" class="btn btn-editor" onclick="onFontIncrease()"><img
-                                        src="icons/increase font - icon.png" width="30px" /></button>
-                                <button type="button" class="btn btn-editor" onclick="onFontDecrease()"><img
-                                        src="icons/decrease font - icon.png" width="30px" /></button>
                                 <button type="button" class="btn btn-editor" onclick="onSetAlign('right')"><img
                                         src="icons/align-to-left.png" width="30px" /></button>
                                 <button type="button" class="btn btn-editor" onclick="onSetAlign('center')"><img
                                         src="icons/center-text-alignment.png" width="30px" /></button>
                                 <button type="button" class="btn btn-editor" onclick="onSetAlign('left')"><img
                                         src="icons/align-to-right.png" width="30px" /></button>
+                                <button type="button" class="btn btn-editor" onclick="onFontIncrease()"><img
+                                        src="icons/increase font - icon.png" width="30px" /></button>
+                                <button type="button" class="btn btn-editor" onclick="onFontDecrease()"><img
+                                        src="icons/decrease font - icon.png" width="30px" /></button>
+
                                 <button type="button" class="btn btn-editor"
                                     onclick="document.querySelector('#text-color').click()"><img
                                         src="icons/paint-board-and-brush.png" width="30px" /></button>
@@ -81,7 +87,7 @@
                                     value="#ffffff" />
                                 <button type="button" class="btn btn-editor"
                                     onclick="document.querySelector('#stroke-color').click()"><img
-                                        src="icons/paint-board-and-brush.png" width="30px" /></button>
+                                        src="icons/text stroke.png" width="30px" /></button>
                                 <input type="color" class="hide" id="stroke-color"
                                     onchange="onChangeStrokeColor(this.value)" value="#000000" />
                                 <div class="stroke">
@@ -94,7 +100,9 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="footer">Footer</div> -->
+        <div class="footer">
+            <p>Sprint #2 Project by Daniel Yona, Sep 2019</p>
+        </div>
     </div>
     <script src="js/meme-service.js"></script>
     <script src="js/meme-controller.js"></script>

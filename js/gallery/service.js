@@ -24,6 +24,5 @@ function getImgFromGallery(id) {
 
 function deleteImgFromGallery(id) {
     gSavedImgs = gSavedImgs.filter(img => img.id !== id);
-    console.log(gSavedImgs);
     saveToGallery();
 }

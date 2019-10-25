@@ -53,8 +53,8 @@
                     <div class="export flex">
                         <button class="btn btn-facebook" onclick="onShare()"><i class="fa fa-facebook"></i> Share</button>
                         <button class="btn" onclick="onSave()"><i class="fa fa-save"></i> Save</button>
-                        <button class="btn" id="download" download="Image.jpg" href="" onclick="onDownload(this);"><i
-                                class="fa fa-download"></i> Download</button>
+                        <a class="btn" id="download" download="Image.jpg" href="" onclick="onDownload(this);"><i
+                                class="fa fa-download"></i> Download</a>
                     </div>
                 </div>
                 <div class="meme-content-container flex">
@@ -62,7 +62,7 @@
                         <canvas id="canvas"></canvas>
                     </div>
                     <div class="editor-container">
-                        <input class="input" id="text" placeholder="Add text first and enter your text..."></input>
+                        <input class="input" id="text" onfocus="test()" placeholder="Enter your text..."></input>
                         <div class="meme-opts flex">
                             <div class="general-opt">
                                 <button type="button" class="btn btn-editor btn-danger" onclick="onDeleteText()"><img
@@ -86,7 +86,6 @@
                                         src="icons/increase font - icon.png" width="30px" /></button>
                                 <button type="button" class="btn btn-editor" onclick="onFontDecrease()"><img
                                         src="icons/decrease font - icon.png" width="30px" /></button>
-
                                 <button type="button" class="btn btn-editor"
                                     onclick="document.querySelector('#text-color').click()"><img
                                         src="icons/paint-board-and-brush.png" width="30px" /></button>

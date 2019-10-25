@@ -16,20 +16,23 @@ function renderModal(id) {
     let elModal = document.querySelector('.modal');
     elModal.classList.remove('hide');
     var strHTMLs = `<div class="modal-content">
-                    <div class="close-btn">
-                        <span onclick="hideModal()" class="close" title="Close Modal">&times;</span>
-                    </div>
-                    <div class="img-container">
-                        <img id="gallery-img" src="${img.data}" alt=""/>
-                    </div>
-                    <div class="export-btns flex">
-                    <button class="btn btn-danger" onclick="onDelete(${id})"><i class="fa fa-remove"></i> Delete</a>
-                    <button class="btn btn-facebook" onclick=""><i class="fa fa-facebook"></i> Share</button>
-                    <a class="btn" download="Image.jpg" href="" onclick="onDownloadFromGallery(this)"><i
-                            class="fa fa-download"></i> Download</a>
-                    </div>
-                </div>`;
-    strHTMLs += '</div>';
+                        <div class="close-btn">
+                            <span onclick="hideModal()" class="close" title="Close Modal">&times;</span>
+                        </div>
+                        <div class="img-container">
+                            <img id="gallery-img" src="${img.data}" alt=""/>
+                        </div>
+                        <div class="btns flex space-between">
+                            <div class="delete-btn">
+                                <button class="btn btn-danger flex1" onclick="onDelete(${id})"><i class="fa fa-remove"></i> Delete</a>
+                            </div>
+                            <div class="export-btns">
+                                <button class="btn btn-facebook" onclick=""><i class="fa fa-facebook"></i> Share</button>
+                                <a class="btn" download="Image.jpg" href="" onclick="onDownloadFromGallery(this)"><i
+                                        class="fa fa-download"></i> Download</a>
+                            </div>
+                        </div>
+                    </div>`;
     elModal.innerHTML = strHTMLs;
 }
 
@@ -39,12 +42,12 @@ function onDownloadFromGallery(elLink) {
     elLink.setAttribute("href", img.src);
 }
 
-function onDelete(id){
+function onDelete(id) {
     deleteImgFromGallery(id);
     hideModal();
     renderGallery();
 }
 
-function hideModal(){
+function hideModal() {
     document.querySelector('.modal').classList.add('hide');
 }

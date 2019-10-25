@@ -5,6 +5,12 @@ window.onload = () => {
     renderImgs();
 }
 
+function test() {
+    getCurrText()
+    if (getCurrText()) return;
+    onAddText();
+}
+
 function clearCanvas() {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
 }

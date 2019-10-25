@@ -11,8 +11,8 @@
 }
 
 .logo-img {
-    height: 100%;
     cursor: pointer;
+    margin: 12px auto;
 }
 
 .nav-item {

@@ -85,6 +85,7 @@ function addText(line, size, stroke, strokeColor, align, color) {
 }
 
 function deleteText() {
+    if(gMeme.txts.length === 1) return;
     gMeme.txts.splice(gMeme.selectedTxtIdx, 1);
 }
 

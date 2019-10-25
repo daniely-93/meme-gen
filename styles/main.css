@@ -16,7 +16,7 @@ a {
 
 .content {
     background-color: rgb(255, 255, 255);
-    flex: 10;
+    flex: 12;
     padding: 20px;
     overflow-y: auto;
 }
@@ -137,7 +137,7 @@ a {
     color: white;
     font-weight: bold;
     user-select: none;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
 }
 
 /* Elements & Helpers */

@@ -64,6 +64,7 @@ function onAddText() {
     let strokeSize = document.querySelector('#stroke-text-size-input').value;
     addText('', 36, +strokeSize, 'black', 'center', 'white');
     renderText();
+    markSelectedText();
 }
 
 function onTextChange(e) {
@@ -73,53 +74,63 @@ function onTextChange(e) {
     }
     updateText(e.target.value);
     renderText();
+    markSelectedText();
 }
 
 function onDeleteText() {
     deleteText();
     renderText();
     onNextText();
+    markSelectedText();
 }
 
 function onFontDecrease() {
     decreaseFont();
     renderText();
+    markSelectedText();
 }
 
 function onFontIncrease() {
     increaseFont();
     renderText();
+    markSelectedText();
 }
 
 function onSetAlign(side) {
     setAlign(side);
-    renderText()
+    renderText();
+    markSelectedText();
 }
 
 function onChangeColor(val) {
     changeColor(val);
     renderText();
+    markSelectedText();
 }
 
 function onChangeStrokeColor(val) {
     changeStrokeColor(val);
     renderText();
+    markSelectedText();
 }
 
 function onMoveDown() {
     moveDown();
     renderText();
+    markSelectedText();
 }
 
 function onMoveUp() {
     moveUp();
     renderText();
+    markSelectedText();
 }
 
 function onStrokeChange(val) {
     if (!getCurrText()) return;
     updateStroke(val);
     renderText();
+    markSelectedText();
 }
 
 function renderText() {
@@ -135,7 +146,7 @@ function renderText() {
 
         gCtx.fillText(text.line, gCanvas.width / 2, text.position, gCanvas.width);
         gCtx.strokeText(text.line, gCanvas.width / 2, text.position, gCanvas.width);
-    })
+    });
 }
 
 function goBack() {
@@ -154,6 +165,8 @@ function onNextText() {
     let text = getCurrText();
     line.value = text.line;
     document.querySelector('#stroke-text-size-input').value = text.stroke;
+    renderText();
+    markSelectedText();
 }
 
 function onResetText() {
@@ -163,6 +176,7 @@ function onResetText() {
 }
 
 function onDownload(elLink) {
+    renderText();
     let image = gCanvas.toDataURL("image/png")
         .replace("image/png", "image/octet-stream");
     elLink.setAttribute("href", image);
@@ -186,7 +200,15 @@ function onUploadImg(e) {
 }
 
 function onSave() {
+    renderText();
     let image = gCanvas.toDataURL("image/png");
     addImgToGallery(image);
     goBack();
+}
+
+function markSelectedText() {
+    gCtx.beginPath();
+    gCtx.lineWidth = 3;
+    gCtx.rect(0, getCurrText().position + 5, gCanvas.width, -getCurrText().size);
+    gCtx.stroke();
 }

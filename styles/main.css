@@ -130,13 +130,14 @@ a {
 }
 
 .footer {
-    background-color: rgb(155, 155, 155);
+    background-color: rgb(0, 131, 255);
     flex: 1;
     text-align: center;
     cursor: default;
     color: white;
     font-weight: bold;
     user-select: none;
+    font-size: 1.3rem;
 }
 
 /* Elements & Helpers */
@@ -196,11 +197,11 @@ a {
 }
 
 .btn-facebook {
-    background-color: #5c7bbe;
+    background-color: #3b5998;
 }
 
 .btn-facebook:hover {
-    background-color: #3b5998;
+    background-color: #283d66;
 }
 
 /* Modal */

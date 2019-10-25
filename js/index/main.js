@@ -6,9 +6,7 @@ window.onload = () => {
 }
 
 function test() {
-    getCurrText()
-    if (getCurrText()) return;
-    onAddText();
+    if (getCurrText()) onAddText();
 }
 
 function clearCanvas() {
@@ -45,6 +43,7 @@ function onSelectHandle(id) {
     setSelectedId(id);
     clearCanvas();
     renderText();
+    if (!getCurrText()) onAddText();
 }
 
 function init() {

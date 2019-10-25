@@ -130,7 +130,7 @@ a {
 }
 
 .footer {
-    background-color: rgb(0, 131, 255);
+    background-color: rgb(155, 155, 155);
     flex: 1;
     text-align: center;
     cursor: default;

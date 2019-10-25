@@ -10,43 +10,51 @@
 
 <body>
     <div class="container flex">
-        <div class="screen" onclick="toggleMenu()"></div>
+        <div class="screen" onclick="document.body.classList.toggle('open-menu')"></div>
         <div class="header">
             <div class="logo">
                 <img class="logo-img" src="img/logo.png" />
             </div>
             <div class="nav-container">
-                <button class="menu-btn" onclick="toggleMenu()">☰</button>
+                <button class="menu-btn" onclick="document.body.classList.toggle('open-menu')">☰</button>
                 <ul class="nav">
-                    <li class="nav-item"><a href="#">Gallery</a></li>
-                    <li class="nav-item"><a href="#">Memes</a></li>
+                    <li class="nav-item"><a href="index.html">Gallery</a></li>
+                    <li class="nav-item"><a href="memes.html">Memes</a></li>
                     <li class="nav-item"><a href="#">About</a></li>
                 </ul>
             </div>
         </div>
         <div class="content">
             <div class="gallery-container flex">
-                <div class="gallery-search flex">
-                    <input class="input search" type="input" oninput="renderImgs()" placeholder="Search..." />
-                    <div class="gallery-search-cats flex">
-                        <button type="button">Funny</button>
-                        <button type="button">Politics</button>
-                        <button type="button">More...</button>
+                <div class="gallery-search">
+                    <div class="top-container flex">
+                        <div class="gallery-search-cats flex">
+                            <input class="input search" type="input" oninput="renderImgs()" placeholder="Search..." />
+                            <!-- Render Keywords -->
+                        </div>
+                        <div class="upload">
+                            <button type="button" class="btn btn-upload"
+                                onclick="document.querySelector('#image-input').click();"><i class="fa fa-upload"
+                                    aria-hidden="true"></i>
+                                Upload</button>
+                            <input type="file" id="image-input" class="hide" onchange="onUploadImg(event)"
+                                accept="image/*">
+                        </div>
                     </div>
                 </div>
-                <div class="pics-gallery">
+                <div class="pics-gallery fade">
                     <!-- Pics to load from JS -->
                 </div>
             </div>
             <div class="meme-container flex hide">
                 <div class="top-menu">
-                    <button class="btn" onclick="goBack()" type="button"><i class="fa fa-arrow-circle-left"
-                            aria-hidden="true"></i> Back</button>
-                    <div class="file-transfer">
-                        <a class="btn" id="download" download="Image.jpg" href="" onclick="onDownload(this);"><i
-                                class="fa fa-upload" aria-hidden="true"></i> Upload</a>
-                        <a class="btn" id="download" download="Image.jpg" href="" onclick="onDownload(this);"><i
-                                class="fa fa-download" aria-hidden="true"></i> Download</a>
+
+                    <button class="btn" onclick="goBack()"><i class="fa fa-arrow-circle-left"></i> Back</button>
+                    <div class="export flex">
+                        <button class="btn btn-facebook" onclick="onShare()"><i class="fa fa-facebook"></i> Share</button>
+                        <button class="btn" onclick="onSave()"><i class="fa fa-save"></i> Save</button>
+                        <button class="btn" id="download" download="Image.jpg" href="" onclick="onDownload(this);"><i
+                                class="fa fa-download"></i> Download</button>
                     </div>
                 </div>
                 <div class="meme-content-container flex">
@@ -54,8 +62,7 @@
                         <canvas id="canvas"></canvas>
                     </div>
                     <div class="editor-container">
-                        <input oninput="e => onTextChange(e)" class="input" id="text"
-                            placeholder="Add text first and enter your text..."></input>
+                        <input class="input" id="text" placeholder="Add text first and enter your text..."></input>
                         <div class="meme-opts flex">
                             <div class="general-opt">
                                 <button type="button" class="btn btn-editor btn-danger" onclick="onDeleteText()"><img
@@ -104,8 +111,10 @@
             <p>Sprint #2 Project by Daniel Yona, Sep 2019</p>
         </div>
     </div>
-    <script src="js/meme-service.js"></script>
-    <script src="js/meme-controller.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/index/service.js"></script>
+    <script src="js/index/main.js"></script>
+    <script src="js/gallery/service.js"></script>
 </body>
 
 </html>

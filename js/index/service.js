@@ -4,7 +4,7 @@ let gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['politics', 'donald trump'] },
     { id: 2, url: 'img/2.jpg', keywords: ['nature', 'happy'] },
     { id: 3, url: 'img/3.jpg', keywords: ['animals', 'dogs'] },
-    { id: 4, url: 'img/4.jpg', keywords: ['kid', 'dog'] },
+    { id: 4, url: 'img/4.jpg', keywords: ['animals', 'kid', 'dog'] },
     { id: 5, url: 'img/5.jpg', keywords: ['kid'] },
     { id: 6, url: 'img/6.jpg', keywords: ['animals', 'cat'] },
     { id: 7, url: 'img/7.jpg', keywords: ['happy'] },
@@ -46,6 +46,19 @@ function getImgs() {
     return gImgs;
 }
 
+function addImg(url) {
+    let id = gImgs[gImgs.length - 1].id + 1;
+    gImgs.push({
+        id,
+        url
+    })
+    gMeme.selectedImgId = id;
+}
+
+function resetText(){
+    gMeme.txts = [];
+}
+
 function setSelectedText(id) {
     gMeme.selectedTxtIdx = id;
 }
@@ -71,7 +84,7 @@ function addText(line, size, stroke, strokeColor, align, color) {
     gMeme.selectedTxtIdx = 0;
 }
 
-function deleteText(){
+function deleteText() {
     gMeme.txts.splice(gMeme.selectedTxtIdx, 1);
 }
 
@@ -107,24 +120,24 @@ function changeColor(color) {
     gMeme.txts[gMeme.selectedTxtIdx].color = color;
 }
 
-function changeStrokeColor(color){
+function changeStrokeColor(color) {
     gMeme.txts[gMeme.selectedTxtIdx].strokeColor = color;
 }
 
-function moveUp(){
+function moveUp() {
     gMeme.txts[gMeme.selectedTxtIdx].position -= 20
 }
 
-function moveDown(){
+function moveDown() {
     gMeme.txts[gMeme.selectedTxtIdx].position += 20
 }
 
-function updateStroke(val){
+function updateStroke(val) {
     gMeme.txts[gMeme.selectedTxtIdx].stroke = val;
 }
 
-function filterImgs(byFilter){
+function filterImgs(byFilter) {
     return gImgs.filter(img => {
-        return img.keywords.find(prop => prop.includes(byFilter));
+        return img.keywords ? img.keywords.find(prop => prop.includes(byFilter)) : null;
     })
 }

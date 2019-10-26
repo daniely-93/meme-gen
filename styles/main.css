@@ -98,6 +98,7 @@ a {
 
 .canvas-container {
     flex: 1;
+    width: 100%;
 }
 
 .meme-content-container {
@@ -296,5 +297,11 @@ a {
     }
     .modal-content {
         width: 90%;
+    }
+}
+
+@media screen and (min-width: 1540px){
+    #canvas{
+        width: 80%;
     }
 }

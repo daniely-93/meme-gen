@@ -40,7 +40,7 @@ function generateMeme() {
 
 function onSelectHandle(id) {
     init();
-    setSelectedId(id); 
+    setSelectedId(id);
     renderCanvas();
     if (!getCurrText()) onAddText();
 }
@@ -203,12 +203,27 @@ function onUploadImg(e) {
 }
 
 function onSave() {
-    renderCanvas();
-    let image = gCanvas.toDataURL("image/png");
-    addImgToGallery(image);
-    setTimeout(() => {
-        goBack();
-    }, 100);
+    try {
+        renderCanvas();
+        let image = gCanvas.toDataURL("image/png");
+        addImgToGallery(image);
+        setTimeout(() => {
+            goBack();
+        }, 100);
+    }
+    catch (err) {
+        let elModal = document.querySelector('.modal');
+        elModal.classList.remove('hide');
+        var strHTMLs = `<div class="modal-content">
+                            <div class="close-btn">
+                                <span onclick="hideModal()" class="close" title="Close Modal">&times;</span>
+                            </div>
+                            <div class="text-container">
+                                <p>${err.toString().includes('QuotaExceededError') ? 'Your gallery is full, please remove an item first.' : err}</p>
+                            </div>
+                        </div>`;
+        elModal.innerHTML = strHTMLs;
+    }
 }
 
 function markSelectedText() {
@@ -216,4 +231,8 @@ function markSelectedText() {
     gCtx.lineWidth = 3;
     gCtx.rect(0, getCurrText().position + 5, gCanvas.width, -getCurrText().size);
     gCtx.stroke();
+}
+
+function hideModal() {
+    document.querySelector('.modal').classList.add('hide');
 }

@@ -40,9 +40,8 @@ function generateMeme() {
 
 function onSelectHandle(id) {
     init();
-    setSelectedId(id);
-    clearCanvas();
-    renderText();
+    setSelectedId(id); 
+    renderCanvas();
     if (!getCurrText()) onAddText();
 }
 
@@ -63,7 +62,7 @@ function onAddText() {
     line.value = '';
     let strokeSize = document.querySelector('#stroke-text-size-input').value;
     addText('', 36, +strokeSize, 'black', 'center', 'white');
-    renderText();
+    renderCanvas();
     markSelectedText();
 }
 
@@ -73,69 +72,73 @@ function onTextChange(e) {
         return;
     }
     updateText(e.target.value);
-    renderText();
+    renderCanvas();
     markSelectedText();
 }
 
 function onDeleteText() {
     deleteText();
-    renderText();
+    renderCanvas();
     onNextText();
     markSelectedText();
 }
 
 function onFontDecrease() {
     decreaseFont();
-    renderText();
+    renderCanvas();
     markSelectedText();
 }
 
 function onFontIncrease() {
     increaseFont();
-    renderText();
+    renderCanvas();
     markSelectedText();
 }
 
 function onSetAlign(side) {
     setAlign(side);
-    renderText();
+    renderCanvas();
     markSelectedText();
 }
 
 function onChangeColor(val) {
     changeColor(val);
-    renderText();
+    renderCanvas();
     markSelectedText();
 }
 
 function onChangeStrokeColor(val) {
     changeStrokeColor(val);
-    renderText();
+    renderCanvas();
     markSelectedText();
 }
 
 function onMoveDown() {
     moveDown();
-    renderText();
+    renderCanvas();
     markSelectedText();
 }
 
 function onMoveUp() {
     moveUp();
-    renderText();
+    renderCanvas();
     markSelectedText();
 }
 
 function onStrokeChange(val) {
     if (!getCurrText()) return;
     updateStroke(val);
-    renderText();
+    renderCanvas();
     markSelectedText();
 }
 
-function renderText() {
+function renderCanvas() {
     clearCanvas();
     generateMeme();
+    renderText();
+}
+
+function renderText() {
     let texts = getTexts();
     texts.map(text => {
         gCtx.font = text.size + 'px Impact';
@@ -165,18 +168,18 @@ function onNextText() {
     let text = getCurrText();
     line.value = text.line;
     document.querySelector('#stroke-text-size-input').value = text.stroke;
-    renderText();
+    renderCanvas();
     markSelectedText();
 }
 
 function onResetText() {
-    resetText();
+    renderCanvas();
     let line = document.querySelector('#text');
     line.value = '';
 }
 
 function onDownload(elLink) {
-    renderText();
+    renderCanvas();
     let image = gCanvas.toDataURL("image/png")
         .replace("image/png", "image/octet-stream");
     elLink.setAttribute("href", image);
@@ -200,10 +203,12 @@ function onUploadImg(e) {
 }
 
 function onSave() {
-    renderText();
+    renderCanvas();
     let image = gCanvas.toDataURL("image/png");
     addImgToGallery(image);
-    goBack();
+    setTimeout(() => {
+        goBack();
+    }, 100);
 }
 
 function markSelectedText() {

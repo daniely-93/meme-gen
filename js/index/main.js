@@ -173,7 +173,7 @@ function onNextText() {
 }
 
 function onResetText() {
-    renderCanvas();
+    resetText();
     let line = document.querySelector('#text');
     line.value = '';
 }
@@ -223,6 +223,7 @@ function onSave() {
                             </div>
                         </div>`;
         elModal.innerHTML = strHTMLs;
+        markSelectedText();
     }
 }
 
